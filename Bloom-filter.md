@@ -1,5 +1,5 @@
+![Bloom Filter Example](bloom-filters-poster.png)
 # Bloom Filters – Introduction and Implementation
-
 Suppose you are creating an account on Geekbook and want to enter a cool username. After several attempts, you get the message, “Username is already taken.” How does Geekbook check username availability so quickly from millions of registered usernames?  
 
 ### Ways to Check Username Availability:
