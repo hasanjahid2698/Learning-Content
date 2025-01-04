@@ -9,9 +9,15 @@ Welcome to my **Learning Content Repository**! This repository is a collection o
 This repository includes detailed notes and examples on topics such as:
 
 - 🌟 **Data Structures and Algorithms**  
-- 🛠️ **Programming Concepts**  
-- 🔗 **System Design**  
+- 🛠️ **Programming Concepts**
+- 💻 **System Design**  
 - 📚 **General Concepts**  
+
+---
+
+##  🔗 Links of Resources
+
+- 🐳 Docker: https://github.com/sidpalas/devops-directive-docker-course
 
 ---
 
