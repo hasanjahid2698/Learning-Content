@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP Concepts Cheatsheet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a; /* A slightly off-black for the background */
+        }
+        .code-block {
+            font-family: 'Fira Code', monospace;
+            background-color: #282c34; /* Editor-like background */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        .concept-card {
+            background-color: #212121; /* Card background */
+            border: 1px solid #333;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* Basic Python Syntax Highlighting */
+        .code-keyword { color: #c678dd; } /* purple for keywords */
+        .code-class { color: #e5c07b; } /* yellow for class names */
+        .code-function { color: #61afef; } /* blue for functions */
+        .code-string { color: #98c379; } /* green for strings */
+        .code-comment { color: #5c6370; font-style: italic; } /* grey for comments */
+        .code-number { color: #d19a66; } /* orange for numbers */
+        .code-decorator { color: #e5c07b; } /* yellow for decorators */
+    </style>
+</head>
+<body class="text-gray-300 p-4 sm:p-6 md:p-8">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- 1. Encapsulation -->
+        <div class="concept-card rounded-lg p-6">
+            <h2 class="text-2xl font-bold mb-4 text-white">1. Encapsulation 🛡️</h2>
+            <p class="mb-4 text-gray-400">Encapsulation is all about bundling the data (attributes) and the methods that operate on that data into a single unit called a class. It restricts direct access to an object's internal state, hiding implementation details from the outside world.</p>
+            <ul class="list-disc list-inside mb-4 space-y-2">
+                <li><strong class="text-gray-200">Key Idea:</strong> Protect an object's internal state from unintended external modification.</li>
+                <li><strong class="text-gray-200">How:</strong> Make attributes private and provide public methods (getters and setters) to access and modify them.</li>
+            </ul>
+            <h3 class="text-lg font-semibold mb-2 text-white">Python Example:</h3>
+            <div class="code-block"><code><span class="code-keyword">class</span> <span class="code-class">BankAccount</span>:
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, account_number, initial_balance):
+        <span class="code-keyword">self</span>.__account_number = account_number  <span class="code-comment"># Private attribute</span>
+        <span class="code-keyword">self</span>.__balance = initial_balance        <span class="code-comment"># Private attribute</span>
+
+    <span class="code-keyword">def</span> <span class="code-function">deposit</span>(<span class="code-keyword">self</span>, amount):
+        <span class="code-keyword">if</span> amount > <span class="code-number">0</span>:
+            <span class="code-keyword">self</span>.__balance += amount
+
+    <span class="code-keyword">def</span> <span class="code-function">withdraw</span>(<span class="code-keyword">self</span>, amount):
+        <span class="code-keyword">if</span> <span class="code-number">0</span> < amount &lt;= <span class="code-keyword">self</span>.__balance:
+            <span class="code-keyword">self</span>.__balance -= amount
+
+    <span class="code-keyword">def</span> <span class="code-function">get_balance</span>(<span class="code-keyword">self</span>):
+        <span class="code-keyword">return</span> <span class="code-keyword">self</span>.__balance
+
+<span class="code-comment"># Usage</span>
+my_account = <span class="code-class">BankAccount</span>(<span class="code-string">"12345"</span>, <span class="code-number">1000</span>)
+<span class="code-comment"># print(my_account.__balance) # This will cause an AttributeError</span>
+<span class="code-function">print</span>(my_account.<span class="code-function">get_balance</span>()) <span class="code-comment"># Correct way to access the balance</span></code></div>
+        </div>
+
+        <!-- 2. Inheritance -->
+        <div class="concept-card rounded-lg p-6">
+            <h2 class="text-2xl font-bold mb-4 text-white">2. Inheritance 👨‍👩‍👧</h2>
+            <p class="mb-4 text-gray-400">Inheritance allows a class (the child or subclass) to inherit attributes and methods from another class (the parent or superclass). This promotes code reuse and establishes a hierarchical relationship between classes.</p>
+            <ul class="list-disc list-inside mb-4 space-y-2">
+                <li><strong class="text-gray-200">Key Idea:</strong> "Is-a" relationship (e.g., a Car is a Vehicle). Reuse code from a parent class.</li>
+                <li><strong class="text-gray-200">How:</strong> Create a new class that derives from an existing class.</li>
+            </ul>
+            <h3 class="text-lg font-semibold mb-2 text-white">Python Example:</h3>
+            <div class="code-block"><code><span class="code-keyword">class</span> <span class="code-class">Vehicle</span>:  <span class="code-comment"># Parent class</span>
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, color):
+        <span class="code-keyword">self</span>.color = color
+
+    <span class="code-keyword">def</span> <span class="code-function">honk</span>(<span class="code-keyword">self</span>):
+        <span class="code-function">print</span>(<span class="code-string">"Honk honk!"</span>)
+
+<span class="code-keyword">class</span> <span class="code-class">Car</span>(<span class="code-class">Vehicle</span>):  <span class="code-comment"># Child class</span>
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, color, speed):
+        <span class="code-function">super</span>().<span class="code-function">__init__</span>(color)  <span class="code-comment"># Call parent's constructor</span>
+        <span class="code-keyword">self</span>.speed = speed
+
+    <span class="code-keyword">def</span> <span class="code-function">accelerate</span>(<span class="code-keyword">self</span>):
+        <span class="code-function">print</span>(<span class="code-string">"Vroom!"</span>)
+
+<span class="code-comment"># Usage</span>
+my_car = <span class="code-class">Car</span>(<span class="code-string">"Red"</span>, <span class="code-number">120</span>)
+<span class="code-function">print</span>(my_car.color)  <span class="code-comment"># Inherited attribute</span>
+my_car.<span class="code-function">honk</span>()        <span class="code-comment"># Inherited method</span>
+my_car.<span class="code-function">accelerate</span>()  <span class="code-comment"># Own method</span></code></div>
+        </div>
+
+        <!-- 3. Polymorphism -->
+        <div class="concept-card rounded-lg p-6">
+            <h2 class="text-2xl font-bold mb-4 text-white">3. Polymorphism 🎭</h2>
+            <p class="mb-4 text-gray-400">Polymorphism, meaning "many forms," is the ability of an object to take on multiple forms. It allows you to write generic code that can work with objects of different types as long as they share a common interface.</p>
+            <ul class="list-disc list-inside mb-4 space-y-2">
+                <li><strong class="text-gray-200">Key Idea:</strong> Use a single interface to represent different underlying forms (data types).</li>
+                <li><strong class="text-gray-200">How:</strong> A subclass provides its own specific implementation of a method that is already defined in its parent class.</li>
+            </ul>
+            <h3 class="text-lg font-semibold mb-2 text-white">Python Example:</h3>
+            <div class="code-block"><code><span class="code-keyword">class</span> <span class="code-class">Document</span>:
+    <span class="code-keyword">def</span> <span class="code-function">show</span>(<span class="code-keyword">self</span>):
+        <span class="code-keyword">raise</span> <span class="code-class">NotImplementedError</span>
+
+<span class="code-keyword">class</span> <span class="code-class">Pdf</span>(<span class="code-class">Document</span>):
+    <span class="code-keyword">def</span> <span class="code-function">show</span>(<span class="code-keyword">self</span>):
+        <span class="code-keyword">return</span> <span class="code-string">"Showing a PDF document."</span>
+
+<span class="code-keyword">class</span> <span class="code-class">Word</span>(<span class="code-class">Document</span>):
+    <span class="code-keyword">def</span> <span class="code-function">show</span>(<span class="code-keyword">self</span>):
+        <span class="code-keyword">return</span> <span class="code-string">"Showing a Word document."</span>
+
+<span class="code-comment"># Usage</span>
+documents = [<span class="code-class">Pdf</span>(), <span class="code-class">Word</span>()]
+
+<span class="code-keyword">for</span> doc <span class="code-keyword">in</span> documents:
+    <span class="code-comment"># The same method call works for different objects</span>
+    <span class="code-function">print</span>(doc.<span class="code-function">show</span>())</code></div>
+        </div>
+
+        <!-- 4. Abstraction -->
+        <div class="concept-card rounded-lg p-6">
+            <h2 class="text-2xl font-bold mb-4 text-white">4. Abstraction 🤫</h2>
+            <p class="mb-4 text-gray-400">Abstraction focuses on hiding complex implementation details while showing only the necessary information to the user. It helps to simplify complex systems by modeling classes appropriate to the problem.</p>
+            <ul class="list-disc list-inside mb-4 space-y-2">
+                <li><strong class="text-gray-200">Key Idea:</strong> Expose what an object does, not how it does it.</li>
+                <li><strong class="text-gray-200">How:</strong> Use abstract base classes (ABCs) and abstract methods to define a required interface for subclasses.</li>
+            </ul>
+            <h3 class="text-lg font-semibold mb-2 text-white">Python Example:</h3>
+            <div class="code-block"><code><span class="code-keyword">from</span> abc <span class="code-keyword">import</span> ABC, abstractmethod
+
+<span class="code-keyword">class</span> <span class="code-class">Shape</span>(ABC):  <span class="code-comment"># Abstract base class</span>
+    <span class="code-decorator">@abstractmethod</span>
+    <span class="code-keyword">def</span> <span class="code-function">area</span>(<span class="code-keyword">self</span>):
+        <span class="code-keyword">pass</span>
+
+<span class="code-keyword">class</span> <span class="code-class">Rectangle</span>(<span class="code-class">Shape</span>):
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, width, height):
+        <span class="code-keyword">self</span>.width = width
+        <span class="code-keyword">self</span>.height = height
+
+    <span class="code-keyword">def</span> <span class="code-function">area</span>(<span class="code-keyword">self</span>):  <span class="code-comment"># Provides implementation</span>
+        <span class="code-keyword">return</span> <span class="code-keyword">self</span>.width * <span class="code-keyword">self</span>.height
+
+<span class="code-keyword">class</span> <span class="code-class">Circle</span>(<span class="code-class">Shape</span>):
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>, radius):
+        <span class="code-keyword">self</span>.radius = radius
+
+    <span class="code-keyword">def</span> <span class="code-function">area</span>(<span class="code-keyword">self</span>):  <span class="code-comment"># Provides implementation</span>
+        <span class="code-keyword">return</span> <span class="code-number">3.14</span> * <span class="code-keyword">self</span>.radius ** <span class="code-number">2</span>
+
+<span class="code-comment"># Usage</span>
+rect = <span class="code-class">Rectangle</span>(<span class="code-number">10</span>, <span class="code-number">5</span>)
+circ = <span class="code-class">Circle</span>(<span class="code-number">7</span>)
+<span class="code-function">print</span>(<span class="code-string">f"Rectangle Area: {rect.area()}"</span>)
+<span class="code-function">print</span>(<span class="code-string">f"Circle Area: {circ.area()}"</span>)</code></div>
+        </div>
+
+    </div>
+
+</body>
+</html>
